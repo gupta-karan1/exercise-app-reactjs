@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Stack,
-  Typography,
-  Button,
-  CircularProgress,
-  Box,
-} from "@mui/material";
-import BodyPartImage from "../assets/icons/body-part.png";
-import EquipmentImage from "../assets/icons/equipment.png";
-import TargetImage from "../assets/icons/target.png";
+import { Stack, Typography, Box } from "@mui/material";
+import Loader from "./Loader";
 
 const Detail = ({ exerciseDetail }) => {
   const {
@@ -23,34 +15,31 @@ const Detail = ({ exerciseDetail }) => {
 
   return (
     <Box>
-      {!exerciseDetail && (
-        <CircularProgress
-          sx={{
-            color: "#FF2625",
-            width: "100px !important",
-            height: "100px !important",
-          }}
-        />
-      )}
-
       {exerciseDetail && (
         <Stack
           gap="60px"
           sx={{
             flexDirection: { xs: "column", md: "row" },
-            p: "20px",
+            px: { lg: "100px", xs: "20px" },
             alignItems: "center",
+            mt: { lg: "50px", xs: "30px" },
+            mb: { lg: "100px", xs: "50px" },
           }}
         >
-          <img
-            src={gifUrl}
-            alt={name}
-            loading="lazy"
-            className="detail-image"
-          />
+          {gifUrl ? (
+            <img
+              src={gifUrl || "https://i.imgur.com/2qV5d6u.gif"}
+              alt={name}
+              loading="lazy"
+              className="detail-image"
+            />
+          ) : (
+            <Loader />
+          )}
           <Stack
-            sc={{
+            sx={{
               gap: { lg: "35px", md: "20px", xs: "10px" },
+              px: { lg: "50px", xs: "20px" },
             }}
           >
             <Typography
@@ -81,8 +70,10 @@ const Detail = ({ exerciseDetail }) => {
               <span style={{ color: "#FF2625" }}>{equipment} </span> equipment.
               This also works your{" "}
               {secondaryMuscles &&
-                secondaryMuscles.map((item) => (
-                  <span style={{ color: "#FF2625" }}>{item + ", "} </span>
+                secondaryMuscles.map((item, index) => (
+                  <span key={index} style={{ color: "#FF2625" }}>
+                    {item + ", "}{" "}
+                  </span>
                 ))}{" "}
               as secondary muscles.
             </Typography>
@@ -101,6 +92,7 @@ const Detail = ({ exerciseDetail }) => {
               {instructions &&
                 instructions.map((item, index) => (
                   <Typography
+                    key={index}
                     variant="h6"
                     sx={{
                       fontFamily: "Josefin Sans, sans-serif",

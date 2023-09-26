@@ -8,6 +8,7 @@ const ExerciseCard = ({ exercise }) => {
       sx={{
         width: { lg: "420px", xs: "300px" },
         // height: { lg: "500px", xs: "400px" },
+
         boxShadow: "0 0 10px rgba(0,0,0,0.1)",
         backgroundColor: "#fff",
         borderRadius: "20px",
@@ -15,10 +16,12 @@ const ExerciseCard = ({ exercise }) => {
         margin: "10px",
         transition: "all 0.3s ease",
         "&:hover": {
-          transform: "scale(1.05)",
+          transform: "scale(0.98)",
         },
         padding: "20px",
       }}
+      minHeight={{ lg: "560px", xs: "480px" }}
+      // className="exercise-card"
     >
       <Link
         to={`/exercise/${exercise.id}`}
@@ -34,8 +37,8 @@ const ExerciseCard = ({ exercise }) => {
             // width: "400px",
             width: "100%",
             // height: "400px",
-            objectFit: "cover",
-            borderRadius: "20px",
+            objectFit: "contain",
+            // borderRadius: "20px",
             // boxShadow: "0 0 10px rgba(0,0,0,0.1)",
           }}
         />

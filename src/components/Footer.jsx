@@ -3,7 +3,7 @@ import { Box, Stack, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
-    <Box mt="80px" bgcolor="#fff3f4">
+    <Box mt="80px">
       <Stack
         direction="row"
         justifyContent="center"
